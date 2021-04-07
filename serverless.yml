@@ -1,22 +1,25 @@
 org: carlini
-app: my-aws-python-scheduled-cron-app
-service: my-aws-python-scheduled-cron-app
+app: telegram-bot-crp
+service: telegram-bot-crp
 
 frameworkVersion: '2'
 
 provider:
   name: aws
   runtime: python3.8
-  lambdaHashingVersion: 20201221
+  lambdaHashingVersion: '20201221'
+
+plugins:
+  - serverless-python-requirements
+
+custom:
+  pythonRequirements:
+    dockerizePip: non-linux
 
 functions:
-  rateHandler:
-    handler: handler.run
+  bot:
+    handler: handler.bot
     events:
-      # Invoke Lambda function every minute
-      - schedule: rate(1 minute)
-  cronHandler:
-    handler: handler.run
-    events:
-      # Invoke Lambda function every 2nd minute from Mon-Fri
-      - schedule: cron(0/2 * ? * MON-FRI *)
+      - http:
+          path: /
+          method: any
