@@ -23,3 +23,7 @@ functions:
       - http:
           path: /
           method: any
+    environment:
+      TL_TOKEN: ${param:TL_TOKEN}
+      RAPIDAPI_KEY: ${param:RAPIDAPI_KEY}
+

@@ -1,6 +1,7 @@
 import os
 
 TELE_TOKEN = os.getenv("TL_TOKEN")
+RAPIDAPI_KEY = os.getenv("RAPIDAPI_KEY")
 
 URL = "https://api.telegram.org/bot{}/".format(TELE_TOKEN)
 
